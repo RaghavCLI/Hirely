@@ -16,14 +16,14 @@ function Header() {
           <img src="/logo.png" className="h-12 w-auto object-contain"></img>
         </Link>
 
-        {/* <Button variant="outline"> Login </Button> */}
+        <Button variant="outline"> Login </Button>
 
-        <SignedOut>
+        {/* <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
           <UserButton />
-        </SignedIn>
+        </SignedIn> */}
       </nav>
     </div>
   );
