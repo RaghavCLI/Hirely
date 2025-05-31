@@ -11,6 +11,12 @@ function ProtectedRoutes({ children }) {
   }
 
   // onboading status
+  if (
+    user !== undefined &&
+    !user?.unsafeMetadata?.role &&
+    pathname !== "/onboarding"
+  )
+    return <Navigate to="/onboarding" />;
 
   return children;
 }
