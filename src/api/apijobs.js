@@ -12,5 +12,5 @@ export async function getJobs(token) {
         return { data: [], error };
     }
 
-    return data;
+    return {data, error: null };
 }

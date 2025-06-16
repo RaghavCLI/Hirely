@@ -1,26 +1,20 @@
-import { useSession } from "@clerk/clerk-react";
 import { getJobs } from "../../src/api/apijobs";
+import useFetch from "../../src/hooks/use-fetch";
 import { useEffect } from "react";
 
 function JobListing() {
-  const { session } = useSession();
-
-  const fetchJobs = async () => {
-    const supabaseAccessToken = await session.getToken({
-      template: "supabase",
-    });
-    const data = await getJobs(supabaseAccessToken);
-    console.log(data);
-  };
+  const {
+    fn: fnJobs,
+    data: dataJobs,
+    loading: loadingJobs,
+  } = useFetch(getJobs, {});
 
   useEffect(() => {
-    fetchJobs();
+    fnJobs();
   }, []);
-  return (
-    <div>
-      <h1>Job Listing Page</h1>
-    </div>
-  );
-}
 
+  console.log(dataJobs);
+
+  return <div>Job Listing Page</div>;
+}
 export default JobListing;

@@ -40,14 +40,18 @@ function Header() {
 
         <div className="flex items-center space-x-4">
           <SignedOut>
-            <Button variant="outline" onClick={() => setShowSignIn(true)}>
+            <Button
+              variant="outline"
+              onClick={() => setShowSignIn(true)}
+              className="mr-4"
+            >
               Login
             </Button>
           </SignedOut>
           <SignedIn>
             {user?.unsafeMetadata?.role == "recruiter" && (
               <Link to="/post-job">
-                <Button variant="destructive" className="rounded-full mr-4">
+                <Button variant="destructive" className="rounded-full mr-6">
                   <PenBox size={20} className="mr-2" />
                   Post a Job
                 </Button>
