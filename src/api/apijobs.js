@@ -6,7 +6,7 @@ export async function getJobs(token, {location, company_id, searchQuery}) {
 
     let query = supabase
     .from("jobs")
-    .select("*, company: Companies(name,logo_url), saved:saved_jobs!saved_jobs_job_id_fkey(id)");
+    .select("*, company: companies(name,logo_url), saved:saved_jobs!saved_jobs_job_id_fkey(id)");
 
     if (location) {
         query = query.eq("location", location);
