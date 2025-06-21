@@ -8,15 +8,14 @@ import { getCompanies } from "../api/apiCompanies";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Form } from "react-router-dom";
-import { SelectItem } from "../components/ui/select";
 import { State } from "country-state-city";
-
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectTrigger,
   SelectValue,
+  SelectItem,
 } from "../components/ui/select";
 
 function JobListing() {
