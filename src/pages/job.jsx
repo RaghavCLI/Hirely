@@ -13,6 +13,7 @@ import {
   SelectValue,
   SelectItem,
 } from "../components/ui/select";
+import ApplyJobDrawer from "../components/ui/apply-job";
 
 function JobPage() {
   const { isLoaded, user } = useUser();
@@ -111,6 +112,14 @@ function JobPage() {
       />
 
       {/* render application */}
+      {job?.recruiter_id !== user?.id && (
+        <ApplyJobDrawer
+          job={job}
+          user={user}
+          fetchJob={fnJob}
+          applied={job?.applications?.find((ap) => ap.candidate_id === user.id)}
+        />
+      )}
     </div>
   );
 }
