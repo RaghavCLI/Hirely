@@ -1,4 +1,3 @@
-
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -15,5 +14,5 @@ const supabaseClient = async (supabaseAccessToken) => {
     return supabase;
 };
 
+export { supabaseUrl };
 export default supabaseClient;
-        
