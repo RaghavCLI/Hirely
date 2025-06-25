@@ -32,52 +32,54 @@ function Header() {
   };
 
   return (
-    <div className="pt-6 pl-6">
-      <nav className="py-4 flex justify-between items-center">
-        <Link>
-          <img src="/logo.png" className="h-12 w-auto object-contain"></img>
-        </Link>
+    <div className="pt-4 px-4 sm:px-6 lg:px-8">
+      <nav className="py-4 backdrop-blur-md bg-background/70 rounded-2xl border border-border/40 shadow-lg px-6">
+        <div className="flex justify-between items-center max-w-7xl mx-auto">
+          <Link className="transition-transform hover:scale-105">
+            <img src="/logo.png" className="h-12 w-auto object-contain"></img>
+          </Link>
 
-        <div className="flex items-center space-x-4">
-          <SignedOut>
-            <Button
-              variant="outline"
-              onClick={() => setShowSignIn(true)}
-              className="mr-4"
-            >
-              Login
-            </Button>
-          </SignedOut>
-          <SignedIn>
-            {user?.unsafeMetadata?.role == "recruiter" && (
-              <Link to="/post-job">
-                <Button variant="destructive" className="rounded-full mr-6">
-                  <PenBox size={20} className="mr-2" />
-                  Post a Job
-                </Button>
-              </Link>
-            )}
-            <UserButton
-              appearance={{
-                elements: {
-                  avatarBox: "h-10 w-10",
-                },
-              }}
-            >
-              <UserButton.MenuItems>
-                <UserButton.Link
-                  label="My Jobs"
-                  labelIcon={<BriefcaseBusiness size={15} />}
-                  href="/my-jobs"
-                />
-                <UserButton.Link
-                  label="Saved Jobs"
-                  labelIcon={<Briefcase size={15} />}
-                  href="/saved-job"
-                />
-              </UserButton.MenuItems>
-            </UserButton>
-          </SignedIn>
+          <div className="flex items-center space-x-4">
+            <SignedOut>
+              <Button
+                variant="outline"
+                onClick={() => setShowSignIn(true)}
+                className="mr-4 hover:bg-primary/10"
+              >
+                Login
+              </Button>
+            </SignedOut>
+            <SignedIn>
+              {user?.unsafeMetadata?.role == "recruiter" && (
+                <Link to="/post-job">
+                  <Button className="rounded-full mr-6 shadow-lg hover:shadow-blue-500/30">
+                    <PenBox size={20} className="mr-2" />
+                    Post a Job
+                  </Button>
+                </Link>
+              )}
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "h-10 w-10 ring-2 ring-primary/20",
+                  },
+                }}
+              >
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label="My Jobs"
+                    labelIcon={<BriefcaseBusiness size={15} />}
+                    href="/my-jobs"
+                  />
+                  <UserButton.Link
+                    label="Saved Jobs"
+                    labelIcon={<Briefcase size={15} />}
+                    href="/saved-job"
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
+            </SignedIn>
+          </div>
         </div>
       </nav>
 

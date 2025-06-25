@@ -39,34 +39,51 @@ function JobCard({
     if (savedJobs !== undefined) setSaved(savedJobs?.length > 0);
   }, [savedJobs]);
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 group">
       <CardHeader>
         <CardTitle className="flex justify-between font-bold">
-          {job.title}
+          <span className="text-xl group-hover:text-primary transition-colors">
+            {job.title}
+          </span>
 
           {isMyJob && (
             <Trash2Icon
               fill="red"
               size={18}
-              className="text-red-500 cursor-pointer"
+              className="text-red-500 cursor-pointer hover:scale-110 transition-transform"
             />
           )}
         </CardTitle>
       </CardHeader>
 
       <CardContent className="flex flex-col gap-4 flex-1">
-        <div className="flex justify-between">
-          {job.company && <img src={job.company.logo_url} className="h-6" />}
-          <div className="flex items-center gap-2">
-            <MapPinIcon size={15} /> {job.location}
+        <div className="flex justify-between items-center">
+          {job.company && (
+            <div className="flex items-center gap-3">
+              <img
+                src={job.company.logo_url}
+                className="h-8 w-8 object-contain"
+              />
+              <span className="text-muted-foreground font-medium">
+                {job.company.name}
+              </span>
+            </div>
+          )}
+          <div className="flex items-center gap-2 bg-primary/5 px-3 py-1 rounded-full">
+            <MapPinIcon size={15} className="text-primary" />
+            <span className="text-sm font-medium">{job.location}</span>
           </div>
         </div>
-        <hr />
-        {job.description}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent my-2" />
+        <p className="text-muted-foreground line-clamp-3">{job.description}</p>
       </CardContent>
-      <CardFooter className="flex gap-2">
+
+      <CardFooter className="flex gap-2 pt-4">
         <Link to={`/job/${job.id}`} className="flex-1">
-          <Button variant="secondary" className="w-full">
+          <Button
+            variant="secondary"
+            className="w-full font-medium hover:bg-primary/10"
+          >
             More Details
           </Button>
         </Link>
@@ -74,14 +91,22 @@ function JobCard({
         {!isMyJob && (
           <Button
             variant="outline"
-            className="w-15"
+            className="w-15 hover:bg-red-500/10"
             onClick={handlesaveJob}
             disabled={loadingSavedJobs}
           >
             {saved ? (
-              <Heart size={20} stroke="red" fill="red" />
+              <Heart
+                size={20}
+                stroke="red"
+                fill="red"
+                className="animate-in zoom-in duration-300"
+              />
             ) : (
-              <Heart size={20} />
+              <Heart
+                size={20}
+                className="hover:text-red-500 transition-colors"
+              />
             )}
           </Button>
         )}
