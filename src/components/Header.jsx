@@ -52,7 +52,10 @@ function Header() {
             <SignedIn>
               {user?.unsafeMetadata?.role == "recruiter" && (
                 <Link to="/post-job">
-                  <Button className="rounded-full mr-6 shadow-lg hover:shadow-blue-500/30">
+                  <Button
+                    variant="destructive"
+                    className="rounded-full mr-6 shadow-lg hover:shadow-red-500/30"
+                  >
                     <PenBox size={20} className="mr-2" />
                     Post a Job
                   </Button>
