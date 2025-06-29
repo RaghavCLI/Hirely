@@ -26,7 +26,7 @@ export async function applyToJob(token, _, jobData) {
     .select();
 
     if (error) {
-        console.error("error submitting application:", error);
+        console.error("error submitting application:", storageError);
         return null;
     }
 

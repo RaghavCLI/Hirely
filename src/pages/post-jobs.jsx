@@ -22,6 +22,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { Button } from "../components/ui/button";
 import { addNewJob } from "../api/apijobs";
 import { useNavigate } from "react-router-dom";
+import Addcompanydrawer from "../components/add-company-drawer";
 
 const schema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -149,7 +150,7 @@ function PostJobs() {
               </Select>
             )}
           />
-          {/* add new company */}
+          <Addcompanydrawer fetchCompanies={fnCompanies} />
         </div>
         {errors.location && (
           <p className="text-red-500">{errors.location.message}</p>
