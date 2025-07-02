@@ -31,7 +31,7 @@ function Createdjobs() {
             <JobCard
               key={job.id}
               job={job}
-              savedInit={job?.saved?.length > 0}
+              onJobSaved={fnCreatedJobs}
               isMyJob
             />
           ))

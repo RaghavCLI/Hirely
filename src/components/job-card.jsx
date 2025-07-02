@@ -8,6 +8,8 @@ import { Heart } from "lucide-react";
 import { saveJob } from "../api/apijobs";
 import useFetch from "../hooks/use-fetch";
 import { useState, useEffect } from "react";
+import { BarLoader } from "react-spinners";
+import { deleteJob } from "../api/apijobs";
 
 function JobCard({
   job,
@@ -35,11 +37,23 @@ function JobCard({
     onJobSaved();
   };
 
+  const { loading: loadingDletedJob, fn: fnDeleteJob } = useFetch(deleteJob, {
+    job_id: job.id,
+  });
+
+  const handleDeleteJob = async () => {
+    await fnDeleteJob();
+    onJobSaved();
+  };
+
   useEffect(() => {
     if (savedJobs !== undefined) setSaved(savedJobs?.length > 0);
   }, [savedJobs]);
   return (
     <Card className="flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 group">
+      {loadingDletedJob && (
+        <BarLoader className="mT-4" width={"100%"} color="#36d7b7" />
+      )}
       <CardHeader>
         <CardTitle className="flex justify-between font-bold">
           <span className="text-xl group-hover:text-primary transition-colors">
@@ -51,6 +65,7 @@ function JobCard({
               fill="red"
               size={18}
               className="text-red-500 cursor-pointer hover:scale-110 transition-transform"
+              onClick={handleDeleteJob}
             />
           )}
         </CardTitle>
