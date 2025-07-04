@@ -33,7 +33,7 @@ function Header() {
 
   return (
     <div className="pt-4 px-4 sm:px-6 lg:px-8">
-      <nav className="py-4 backdrop-blur-md bg-background/70 rounded-2xl border border-border/40 shadow-lg px-6">
+      <nav className="py-4 px-6">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <Link className="transition-transform hover:scale-105">
             <img src="/logo.png" className="h-12 w-auto object-contain"></img>
