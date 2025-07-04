@@ -62,7 +62,7 @@ function LandingPage() {
       </div>
 
       {/* Companies Carousel */}
-      <div className="w-full py-10 bg-gradient-to-b from-transparent to-primary/5 rounded-3xl">
+      <div className="w-full py-10 bg-gradient-to-b from-transparent">
         <Carousel plugins={[Autoplay({ delay: 2000 })]} className="w-full">
           <CarouselContent className="flex items-center gap-10 sm:gap-20">
             {companies.map(({ name, id, path }) => (
@@ -84,7 +84,7 @@ function LandingPage() {
       </div>
 
       {/* Banner Image with gradient overlay */}
-      <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl">
+      <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/90 z-10"></div>
         <img
           src="/banner.jpg"

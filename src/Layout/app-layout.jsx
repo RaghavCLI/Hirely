@@ -6,7 +6,7 @@ function Applayout() {
   return (
     <div>
       <div className="grid-background"></div>
-      <main>
+      <main className="relative z-10">
         <Header />
         <Outlet />
       </main>
