@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { BarLoader } from "react-spinners";
 import { useUser } from "@clerk/clerk-react";
 import { Button } from "../components/ui/button";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function onboarding() {
+function Onboarding() {
   const { user, isLoaded } = useUser();
   const navigate = useNavigate();
 
@@ -58,4 +58,4 @@ function onboarding() {
   );
 }
 
-export default onboarding;
+export default Onboarding;
