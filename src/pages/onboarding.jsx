@@ -2,32 +2,39 @@ import { useEffect } from "react";
 import { BarLoader } from "react-spinners";
 import { useUser } from "@clerk/clerk-react";
 import { Button } from "../components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
-function Onboarding() {
+function onboarding() {
   const { user, isLoaded } = useUser();
   const navigate = useNavigate();
 
+  const handleRoleSelection = async (role) => {
+    await user
+      .update({
+        unsafeMetadata: { role },
+      })
+      .then(() => {
+        navigate(role === "recruiter" ? "/post-job" : "/jobs");
+      })
+      .catch((error) => {
+        console.error("Error updating user metadata:", error);
+        // Optionally, you can show an error message to the user
+      });
+  };
+
   useEffect(() => {
-    if (isLoaded && user?.unsafeMetadata?.role) {
+    if (user?.unsafeMetadata?.role) {
       navigate(
-        user.unsafeMetadata?.role === "recruiter" ? "/post-job" : "/jobs",
-        { replace: true }
+        user.unsafeMetadata?.role === "recruiter" ? "/post-job" : "/jobs"
       );
     }
-  }, [isLoaded, user, navigate]);
+  }, [user]);
 
   if (!isLoaded) {
     return <BarLoader className="mb-4" width={"100%"} color="#4f46e5" />;
   }
-
-  // If user has a role, don't render onboarding UI
-  if (user?.unsafeMetadata?.role) {
-    return null;
-  }
-
   return (
-    <div className="flex flex-col items-center justify-center mt-32">
+    <div className="flex flex-col items-center justify-center  mt-32">
       <h2 className="gradient-title font-extrabold text-7xl sm:text-8xl tracking-tighter">
         I Am a...
       </h2>
@@ -51,4 +58,4 @@ function Onboarding() {
   );
 }
 
-export default Onboarding;
+export default onboarding;
