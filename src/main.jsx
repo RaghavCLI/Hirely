@@ -8,6 +8,9 @@ import { shadesOfPurple } from "@clerk/themes";
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
+console.log("Environment:", import.meta.env.MODE);
+console.log("Clerk Key exists:", !!PUBLISHABLE_KEY);
+
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
 }
