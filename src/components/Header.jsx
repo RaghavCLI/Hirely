@@ -32,7 +32,7 @@ function Header() {
   };
 
   return (
-    <div className="pt-4 px-4 sm:px-6 lg:px-8">
+    <div className="pt-4 px-4 sm:px-6 lg:px-8 absolute top-0 left-0 right-0 z-20">
       <nav className="py-4 px-6">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <Link className="transition-transform hover:scale-105">

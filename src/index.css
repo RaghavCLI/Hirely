@@ -60,13 +60,19 @@
 
 @layer utilities{
   .gradient{
-    @apply bg-gradient-to-br from-gray-500 via-gray-200 to-white;
+    @apply bg-gradient-to-br from-blue-400 via-blue-100 to-white;
   }
 
   .gradient-title{
     @apply gradient text-transparent bg-clip-text;
   }
+  
+  /* Professional font utilities */
+  .font-display {
+    @apply font-display;
+  }
 }
+
 @layer base {
   * {
     @apply border-border;

@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindcssAnimate from "tailwindcss-animate";
+
 export default {
     darkMode: ["class"],
     content: [
@@ -7,6 +9,13 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['Inter', 'system-ui', 'sans-serif'],
+  			display: ['Poppins', 'system-ui', 'sans-serif'],
+  			body: ['Source Sans 3', 'system-ui', 'sans-serif'],
+  			lato: ['Lato', 'system-ui', 'sans-serif'],
+  			roboto: ['Roboto', 'system-ui', 'sans-serif']
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -70,13 +79,22 @@ export default {
   				to: {
   					height: '0'
   				}
+  			},
+  			shimmer: {
+  				from: {
+  					backgroundPosition: '0 0'
+  				},
+  				to: {
+  					backgroundPosition: '-200% 0'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			shimmer: 'shimmer 2s linear infinite'
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 }
