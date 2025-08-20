@@ -23,6 +23,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../components/ui/accordion";
+import { RetroGrid } from "../components/ui/retro-grid";
+import { TypingAnimation } from "../components/ui/typing-animation";
 
 // Custom Button Component
 const CustomButton = ({
@@ -116,34 +118,56 @@ const HeroSection = () => (
       aria-hidden="true"
     />
 
+    {/* RetroGrid Background */}
+    <RetroGrid
+      className="z-[1]"
+      angle={65}
+      cellSize={60}
+      opacity={0.7}
+      lightLineColor="#3B82F6"
+      darkLineColor="#3B82F6"
+    />
+
     {/* Hero Content */}
     <div
       className={`relative z-10 flex flex-col items-center gap-4 py-5 sm:py-8 px-4 sm:px-8 w-full max-w-screen-xl mx-auto ${HERO_ANIMATION_CONFIG.slideIn}`}
     >
-      <div className="text-center w-full max-w-4xl space-y-2">
+      <div className="text-center w-full max-w-6xl space-y-6">
         <div className={`inline-block ${HERO_ANIMATION_CONFIG.zoomIn}`}>
-          <h1 className="font-roboto gradient-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mt-16">
+          <h1 className="font-inter-display gradient-title text-5xl md:text-7xl font-bold tracking-tight leading-tight mt-16 break-words w-full max-w-[92vw] md:max-w-[1200px] px-2 mx-auto">
             Find Your Dream Job And Get Hired
           </h1>
         </div>
-        <p
-          className={`text-gray-300 mt-4 text-sm sm:text-lg max-w-xl mx-auto ${HERO_ANIMATION_CONFIG.fadeIn}`}
+        <TypingAnimation
+          className={`text-gray-300 mt-4 text-xl text-opacity-60 tracking-normal max-w-2xl mx-auto font-normal ${HERO_ANIMATION_CONFIG.fadeIn}`}
+          duration={50}
+          delay={1500}
+          startOnView={false}
+          as="h2"
         >
           Explore thousands of job listings or find the perfect candidate.
-        </p>
+        </TypingAnimation>
       </div>
 
       {/* CTA Buttons */}
       <div
-        className={`flex flex-col sm:flex-row gap-4 sm:gap-6 items-center ${HERO_ANIMATION_CONFIG.fadeInDelayed}`}
+        className={`flex flex-col sm:flex-row gap-3 sm:gap-6 items-center mt-8 ${HERO_ANIMATION_CONFIG.fadeInDelayed}`}
       >
         <Link to="/Jobs" aria-label="Browse available jobs">
-          <CustomButton variant="outline" size="lg">
+          <CustomButton
+            variant="outline"
+            size="lg"
+            className="shadow-2xl h-12 px-8 text-lg leading-none transition hover:-translate-y-0.5 hover:brightness-110"
+          >
             Find Jobs
           </CustomButton>
         </Link>
         <Link to="/post-job" aria-label="Post a new job">
-          <CustomButton variant="magic" size="lg">
+          <CustomButton
+            variant="magic"
+            size="lg"
+            className="shadow-2xl h-12 px-8 text-lg leading-none transition hover:-translate-y-0.5 hover:brightness-110"
+          >
             Post Jobs
           </CustomButton>
         </Link>
@@ -224,7 +248,7 @@ const FeatureCards = () => {
 // FAQ Section Component
 const FAQSection = () => (
   <section
-    className="w-full bg-gray-50 dark:bg-gray-900"
+    className="w-full bg-white dark:bg-gray-950"
     aria-label="Frequently Asked Questions"
   >
     <div className="flex flex-col items-center gap-12 py-10 sm:py-24 px-4 sm:px-8 w-full max-w-screen-xl mx-auto">

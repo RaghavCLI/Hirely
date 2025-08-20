@@ -8,7 +8,13 @@ import {
   SignInButton,
   SignIn,
 } from "@clerk/clerk-react";
-import { Briefcase, BriefcaseBusiness, PenBox } from "lucide-react";
+import {
+  Briefcase,
+  BriefcaseBusiness,
+  PenBox,
+  Github,
+  ArrowRight,
+} from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
 
 function Header() {
@@ -31,60 +37,81 @@ function Header() {
     }
   };
 
-  return (
-    <div className="pt-4 px-4 sm:px-6 lg:px-8 absolute top-0 left-0 right-0 z-20">
-      <nav className="py-4 px-6">
-        <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <Link className="transition-transform hover:scale-105">
-            <img src="/logo.png" className="h-12 w-auto object-contain"></img>
-          </Link>
+  const handleStarProject = () => {
+    window.open("https://github.com/RaghavCLI/Hirely", "_blank");
+  };
 
-          <div className="flex items-center space-x-4">
-            <SignedOut>
-              <Button
-                variant="outline"
-                onClick={() => setShowSignIn(true)}
-                className="mr-4 hover:bg-primary/10"
-              >
-                Login
-              </Button>
-            </SignedOut>
-            <SignedIn>
-              {user?.unsafeMetadata?.role == "recruiter" && (
-                <Link to="/post-job">
-                  <Button
-                    variant="destructive"
-                    className="rounded-full mr-6 shadow-lg hover:shadow-red-500/30"
-                  >
-                    <PenBox size={20} className="mr-2" />
-                    Post a Job
-                  </Button>
-                </Link>
-              )}
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "h-10 w-10 ring-2 ring-primary/20",
-                  },
-                }}
-              >
-                <UserButton.MenuItems>
-                  <UserButton.Link
-                    label="My Jobs"
-                    labelIcon={<BriefcaseBusiness size={15} />}
-                    href="/my-jobs"
-                  />
-                  <UserButton.Link
-                    label="Saved Jobs"
-                    labelIcon={<Briefcase size={15} />}
-                    href="/saved-job"
-                  />
-                </UserButton.MenuItems>
-              </UserButton>
-            </SignedIn>
-          </div>
+  return (
+    <div className="border-b sticky top-0 z-50 bg-background">
+      <div className="flex h-16 items-center px-4 container mx-auto">
+        <div className="font-bold text-2xl flex-1">
+          <Link className="flex items-center transition-transform hover:scale-105">
+            <span className="inline drop-shadow-lg font-inter-display text-primary">
+              Hirely
+            </span>
+          </Link>
         </div>
-      </nav>
+
+        <div className="flex items-center space-x-4">
+          <Button
+            variant="outline"
+            onClick={handleStarProject}
+            className="hidden sm:flex bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
+          >
+            <Github className="h-4 w-4 mr-1" /> Star Project
+          </Button>
+          <SignedOut>
+            <button
+              onClick={() => setShowSignIn(true)}
+              className="group relative w-auto cursor-pointer overflow-hidden rounded-full border bg-background p-2 px-6 text-center font-semibold mr-4"
+            >
+              <div className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-primary transition-all duration-300 group-hover:scale-[100.8]"></div>
+                <span className="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
+                  Login
+                </span>
+              </div>
+              <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
+                <span>Login</span>
+                <ArrowRight />
+              </div>
+            </button>
+          </SignedOut>
+          <SignedIn>
+            {user?.unsafeMetadata?.role == "recruiter" && (
+              <Link to="/post-job">
+                <Button
+                  variant="destructive"
+                  className="rounded-full mr-6 shadow-lg hover:shadow-red-500/30"
+                >
+                  <PenBox size={20} className="mr-2" />
+                  Post a Job
+                </Button>
+              </Link>
+            )}
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: "h-10 w-10 ring-2 ring-primary/20",
+                },
+              }}
+            >
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label="My Jobs"
+                  labelIcon={<BriefcaseBusiness size={15} />}
+                  href="/my-jobs"
+                />
+                <UserButton.Link
+                  label="Saved Jobs"
+                  labelIcon={<Briefcase size={15} />}
+                  href="/saved-job"
+                />
+              </UserButton.MenuItems>
+            </UserButton>
+          </SignedIn>
+        </div>
+      </div>
 
       {showSignIn && (
         <div
