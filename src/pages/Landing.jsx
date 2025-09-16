@@ -103,7 +103,7 @@ const HeroSection = () => (
     aria-label="Hero section"
   >
     {/* Hero Content */}
-    <div className="relative z-10 flex flex-col items-center gap-4 py-5 sm:py-8 px-4 sm:px-8 w-full max-w-screen-xl mx-auto">
+    <div className="relative z-10 flex flex-col items-center gap-4 py-5 sm:py-8 px-4 sm:px-8 w-full max-w-screen-xl mx-auto z-10">
       <div className="text-center w-full max-w-6xl space-y-6">
         {/* Recruiters Button */}
         <div className="mb-6 sm:mb-8 md:mb-10 flex justify-center">

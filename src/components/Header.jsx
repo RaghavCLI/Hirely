@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import {
   UserButton,
   SignedIn,
   SignedOut,
   SignInButton,
-  SignIn,
 } from "@clerk/clerk-react";
 import {
   Briefcase,
@@ -18,24 +17,7 @@ import {
 import { useUser } from "@clerk/clerk-react";
 
 function Header() {
-  const [showSignIn, setShowSignIn] = useState(false);
-
-  const [search, setSearch] = useSearchParams();
-
   const { user } = useUser();
-
-  useEffect(() => {
-    if (search.get("sign-in")) {
-      setShowSignIn(true);
-    }
-  }, [search]);
-
-  const handleOverlayClick = (e) => {
-    if (e.target === e.currentTarget) {
-      setShowSignIn(false);
-      setSearch({});
-    }
-  };
 
   const handleStarProject = () => {
     window.open("https://github.com/RaghavCLI/Hirely", "_blank");
@@ -73,21 +55,24 @@ function Header() {
             <Github className="h-4 w-4 mr-1" /> Star Project
           </Button>
           <SignedOut>
-            <button
-              onClick={() => setShowSignIn(true)}
-              className="group relative w-auto cursor-pointer overflow-hidden rounded-full border border-cyan-400/20 bg-black/10 backdrop-blur-sm p-2 px-6 text-center font-semibold mr-4 text-cyan-200 hover:bg-cyan-500/5 hover:border-cyan-400/30 transition-all duration-300"
+            <SignInButton
+              mode="modal"
+              signUpForceRedirectUrl="/onboarding"
+              fallbackRedirectUrl="/onboarding"
             >
-              <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-cyan-400 transition-all duration-300 group-hover:scale-[100.8]"></div>
-                <span className="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
-                  Login
-                </span>
-              </div>
-              <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
-                <span>Login</span>
-                <ArrowRight />
-              </div>
-            </button>
+              <button className="group relative w-auto cursor-pointer overflow-hidden rounded-full border border-cyan-400/20 bg-black/10 backdrop-blur-sm p-2 px-6 text-center font-semibold mr-4 text-cyan-200 hover:bg-cyan-500/5 hover:border-cyan-400/30 transition-all duration-300">
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-cyan-400 transition-all duration-300 group-hover:scale-[100.8]"></div>
+                  <span className="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
+                    Login
+                  </span>
+                </div>
+                <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
+                  <span>Login</span>
+                  <ArrowRight />
+                </div>
+              </button>
+            </SignInButton>
           </SignedOut>
           <SignedIn>
             {user?.unsafeMetadata?.role == "recruiter" && (
@@ -125,18 +110,6 @@ function Header() {
           </SignedIn>
         </div>
       </div>
-
-      {showSignIn && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50"
-          onClick={handleOverlayClick}
-        >
-          <SignIn
-            signUpForceRedirectUrl="/onboarding"
-            fallbackRedirectUrl="/onboarding"
-          />
-        </div>
-      )}
     </div>
   );
 }
