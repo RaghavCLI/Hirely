@@ -23,8 +23,9 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../components/ui/accordion";
-import { RetroGrid } from "../components/ui/retro-grid";
 import { TypingAnimation } from "../components/ui/typing-animation";
+import { Badge } from "../components/ui/badge";
+import { Zap, ArrowRight, Briefcase, Plus } from "lucide-react";
 
 // Custom Button Component
 const CustomButton = ({
@@ -87,13 +88,6 @@ const CustomButton = ({
 };
 
 // Constants for better maintainability
-const HERO_ANIMATION_CONFIG = {
-  slideIn: "animate-in slide-in-from-bottom duration-1000",
-  zoomIn: "animate-in zoom-in duration-700",
-  fadeIn: "animate-in fade-in duration-1000 delay-300",
-  fadeInDelayed: "animate-in fade-in duration-1000 delay-500",
-};
-
 const CAROUSEL_CONFIG = {
   autoplay: { delay: 2000 },
   itemsConfig: {
@@ -108,38 +102,42 @@ const HeroSection = () => (
     className="min-h-screen w-full relative flex items-start justify-center pt-20"
     aria-label="Hero section"
   >
-    {/* Dark Horizon Glow Background */}
-    <div
-      className="absolute inset-0 z-0"
-      style={{
-        background:
-          "radial-gradient(125% 125% at 50% 90%, #000000 40%, #0d1a36 100%)",
-      }}
-      aria-hidden="true"
-    />
-
-    {/* RetroGrid Background */}
-    <RetroGrid
-      className="z-[1]"
-      angle={65}
-      cellSize={60}
-      opacity={0.7}
-      lightLineColor="#3B82F6"
-      darkLineColor="#3B82F6"
-    />
-
     {/* Hero Content */}
-    <div
-      className={`relative z-10 flex flex-col items-center gap-4 py-5 sm:py-8 px-4 sm:px-8 w-full max-w-screen-xl mx-auto ${HERO_ANIMATION_CONFIG.slideIn}`}
-    >
+    <div className="relative z-10 flex flex-col items-center gap-4 py-5 sm:py-8 px-4 sm:px-8 w-full max-w-screen-xl mx-auto">
       <div className="text-center w-full max-w-6xl space-y-6">
-        <div className={`inline-block ${HERO_ANIMATION_CONFIG.zoomIn}`}>
-          <h1 className="font-inter-display gradient-title text-5xl md:text-7xl font-bold tracking-tight leading-tight mt-16 break-words w-full max-w-[92vw] md:max-w-[1200px] px-2 mx-auto">
-            Find Your Dream Job And Get Hired
+        {/* Recruiters Button */}
+        <div className="mb-6 sm:mb-8 md:mb-10 flex justify-center">
+          <a
+            href="https://github.com/RaghavCLI/Hirely"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex"
+          >
+            <Badge
+              variant="secondary"
+              className="gap-2 py-2 px-3 sm:px-4 text-xs sm:text-sm rounded-full shadow-lg backdrop-blur-md transition-all duration-300 border bg-black/40 border-white/20 text-white hover:bg-black/50"
+            >
+              <div className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </div>
+              <span className="font-medium">5+ New Patterns</span>
+              <Zap className="h-3 w-3 text-orange-500" />
+              <span className="hidden sm:inline-flex items-center">
+                Read More
+              </span>
+              <ArrowRight className="h-3 w-3" />
+            </Badge>
+          </a>
+        </div>
+
+        <div className="inline-block">
+          <h1 className="font-inter-display gradient-title text-5xl md:text-7xl font-bold tracking-tight leading-tight mt-0 break-words w-full max-w-[92vw] md:max-w-[1200px] px-2 mx-auto">
+            Find Your Dream Job <br /> <div className="mt-5">And Get Hired</div>
           </h1>
         </div>
         <TypingAnimation
-          className={`text-gray-300 mt-4 text-xl text-opacity-60 tracking-normal max-w-2xl mx-auto font-normal ${HERO_ANIMATION_CONFIG.fadeIn}`}
+          className="text-gray-300 mt-4 text-xl text-opacity-60 tracking-normal max-w-2xl mx-auto font-normal"
           duration={50}
           delay={1500}
           startOnView={false}
@@ -150,27 +148,27 @@ const HeroSection = () => (
       </div>
 
       {/* CTA Buttons */}
-      <div
-        className={`flex flex-col sm:flex-row gap-3 sm:gap-6 items-center mt-8 ${HERO_ANIMATION_CONFIG.fadeInDelayed}`}
-      >
-        <Link to="/Jobs" aria-label="Browse available jobs">
-          <CustomButton
-            variant="outline"
-            size="lg"
-            className="shadow-2xl h-12 px-8 text-lg leading-none transition hover:-translate-y-0.5 hover:brightness-110"
-          >
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0">
+        <Button
+          size="lg"
+          className="cursor-pointer gap-2 px-4 sm:px-8 py-3 text-sm sm:text-base font-medium shadow-lg transition-all duration-300 flex-1 sm:flex-none bg-white text-black hover:bg-gray-100"
+          asChild
+        >
+          <Link to="/Jobs" aria-label="Browse available jobs">
+            <Briefcase className="h-4 sm:h-5 w-4 sm:w-5" />
             Find Jobs
-          </CustomButton>
-        </Link>
-        <Link to="/post-job" aria-label="Post a new job">
-          <CustomButton
-            variant="magic"
-            size="lg"
-            className="shadow-2xl h-12 px-8 text-lg leading-none transition hover:-translate-y-0.5 hover:brightness-110"
-          >
+          </Link>
+        </Button>
+        <Button
+          size="lg"
+          className="cursor-pointer gap-2 px-4 sm:px-8 py-3 text-sm sm:text-base font-medium shadow-lg transition-all duration-300 flex-1 sm:flex-none bg-slate-950 text-white hover:bg-slate-900"
+          asChild
+        >
+          <Link to="/post-job" aria-label="Post a new job">
+            <Plus className="h-4 sm:h-5 w-4 sm:w-5" />
             Post Jobs
-          </CustomButton>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   </section>
